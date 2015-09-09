@@ -1,0 +1,19 @@
+- Having access to old variable even after the outer function has already been returned
+
+- A NEW context is always created in the same context as its function was defined within
+
+MEANING: even if a function is invoked outside of its definition, if it was declared within a parent function, its context is still inside the parent context
+
+var sagas = [];
+
+var newSaga = function () {
+	sagas.push(function() {});
+}
+
+newSaga();
+sagas[0] (); // this context is still within the newSaga context since the function is a child of the larger parent newSaga function
+
+newSaga();
+sagas[1] (); // this will still be within the newSaga context but since newSage has been invoked a second time, it will exist within this new newSaga context
+
+- Closures are important because if we have a value we would like to have remain static, we can place it in the outer scope and use it in the inner (child) scope - which we will use multiple times and can have different values (the child scope's values can change but the outer scope will not)
