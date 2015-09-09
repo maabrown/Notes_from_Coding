@@ -1,0 +1,24 @@
+SCOPES
+
+Lexical Scope
+
+- Global: everything in your code has access to them
+
+- Lexical scope: access within the function declaration {}
+   Use the 'var' keyword to keep it local - not using it throws the variable  to the global scope
+
+
+Execution Contexts (In-Memory Scopes)
+
+- Built as the execution is run
+
+- This is where hoisting matters:
+		function expressions are hoisted to the top
+		function declarations are NOT hoisted
+
+- Uses key-value data storage objects - but is not the same as the in-memory objects
+
+- Creates a new execution context each time a function is run!!
+
+- The same function being run by two different function invocations would create two different contexts which would fail a === comparison
+
