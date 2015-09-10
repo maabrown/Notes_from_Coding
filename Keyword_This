@@ -1,0 +1,51 @@
+- 'this' is identifier that gets a value bound to a correct object automatically
+
+- which object should be focal when invoking a method or constructor
+
+- WONT BE BOUND TO:
+	- the object created by the literal this appears within
+	- the function object this appears within
+	- "a new instange of" the function this appears within (generally)
+	- an object that happens to have that function as a property
+	- an "execution context" or "scope" of that function call (which can't happen since we can't refer to those explicitly)
+
+
+- WILL BE BOUND TO:
+	- the object found TO THE LEFT OF THE DOT where the CONTAINING FUNCTION IS CALLED
+
+- parameters are only bound to values upon invocation
+
+- 'this' behaves most of the times just like a typical parameter
+
+- 'this' is typically a parameter of a method invocation
+
+- you pass in a parameter when you call a function on the right side of a dot access for property lookup
+
+var fn = function(one, two) {
+	log(this, one, two);
+};
+
+var r = {};
+
+r.method = fn;
+
+r.method(g,b) -- you pass in the object 'r' as a parameter using this method and it will be bound to the 'this' object --- which is the same as r['method'](g,b)
+
+- when you don't have a dot to help pass a specific binding to 'this' it binds it to the global object <global>
+
+- using the .call() method overrides 'left of dot' rule and default assignment to the global object -- it allows you to input any object you want to bind to 'this' - you add an additional parameter to the front of the parameter list for the function
+
+fn.call(r, g, b); // 'this' is bound to the 'r' object
+
+- when NO VALUES are passed to a function invocation, the parameters are bound to the value 'undefined'
+
+- when using 'this' in a callback function is tricky
+
+- if you want to use 'this' in a callback function, just define the function as a parameter and within the body of the function you reference your method and bind whatever you object you want to 'this'
+
+setTimeOut( function() {
+	r.method(g,b)
+	}, 1000); // 'this' is bound to the 'r' object
+)
+
+- 'this' allows you to build one function object and use it as a method on any number of objects and it will have access to any object it is being called on
