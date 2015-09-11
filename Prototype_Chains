@@ -1,0 +1,25 @@
+- Avoid code dupulication
+
+- Make objects that resemble other objects - when you want two objects to have the same properties, rather than copy all the properties - you can use prototype chains
+
+- This works by delegating the failed lookups on one objects to then refer to another object (if obj 'a' doesn't have a property requested the console will look at obj 'b')
+
+- Javascript looks up the 'key' for a property in an object and returns the 'value' of that key
+
+- Interpretor will return 'undefined' for a property that doesn't exist on an object
+
+- using the 'extend({}, name_of_object_you_want_to_copy)' is a one-time property copying that won't dynamically change if you change the 'name_of_obj' object
+
+- Object.create(name_of_object_you_want_to_delegate_to) creates an ongoing lookup-time delegation
+
+var gold = {a:1}
+
+var rose = Object.create(gold); // now when the interpretor has to look up a property on 'rose' and it can't find it - it will look back at the 'gold' object
+
+extend{} copies properties, Object.create() creates a delegation chain between two objects - not that properties are copied
+
+- Object prototype is the baseline object that all objects will eventually fall back to them - which is why you can use functions like .toString which was never a property you made on any object you created)
+
+- .constructor method will let you know if the object you created is an Array or Object
+
+- Array prototype delegates back to the Object prototype if there is a failed look up
