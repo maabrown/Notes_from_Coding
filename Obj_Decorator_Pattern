@@ -1,0 +1,29 @@
+- Refracturing code allows you to minimize mistakes
+
+- Find the points where code repeats itself and find ways to refactor it
+
+- Allow you to change functions without having to retype it on every object that is using the method
+
+- Decorator, named as adjectives, are functions that take in objects as inputs and changes them and return them
+
+- Rather that using an object name as an input to a function, we can use 'this' to bind the function being called to the object to the right of the dot
+
+rather than
+  var move = function(obj) {
+  	object.move++;
+  }
+
+we have
+	var move = function() {
+		this.move++;
+	}
+
+all this can then change to:
+
+var carLike = function(obj, loc) {
+	obj.loc = loc;
+	obj.move = function() {
+		obj.loc++;
+	}
+	return obj
+}
