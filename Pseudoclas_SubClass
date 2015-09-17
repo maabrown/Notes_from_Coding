@@ -1,0 +1,45 @@
+Pseudoclassical Subclasses
+
+
+var Car = function(loc) {
+	this.loc = loc;
+};
+
+Car.prototype.move = function() {
+	this.loc++;
+};
+
+
+var Van = function(loc) {
+	Car.call(this,loc);  // using the call() method allows us to run a function in the context we want (the scope we want)
+};
+
+// right now Van.prototype - which was created through the use of the keyword 'new' in front of the function - delegates to Object.prototype, NOT Car.prototype
+
+var zed = new Car(3);
+var amy = new Van(9);
+
+
+the 'this' in the Van fxn is different from the 'this' in the Car fxn because of our use of the keyword 'new' in our code
+
+REMEMBER - using the keyword 'new' in front of functions means we insert two unseen lines of code into our function body
+
+var Car = function(loc) {
+	this = Object.create(Car.prototype);
+	// **//
+	return this;
+}
+
+in order to get Van.prototype to delegate back to Car.prototype:
+
+Van.prototype = Object.create(Car.prototype);
+
+Constructor function delegates to Prototype which is why
+
+Van.prototype = Object.create(Car) IS WRONG!!!
+
+trying to do dot access to a value that is undefined returns an error
+
+
+NameofThing.prototype.constructor = ThingYouWantToAssignItTo
+Van.prototype.constructor = Van // assigns constructor of an prototype
