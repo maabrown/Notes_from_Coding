@@ -1,0 +1,7 @@
+- Decorater code accepts the object it will manipulate as a parameter
+
+- Classes will build the objects for you
+
+- Construct that builds a suite of objects, named using a Capital first letter, are called consturctor classese
+
+- FUnctions that create these fleet of objecsts are called
