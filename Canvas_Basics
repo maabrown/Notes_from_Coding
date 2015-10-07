@@ -1,0 +1,55 @@
+Canvas
+
+- Takes 2-D instructions and immediately renders them
+
+- Canvas tag:
+	<canvas></<canvas>
+	takes height and width properties
+	<canvas width="200" height="200"></canvas>
+
+To use canvas:
+
+<script>
+	var c = document.querySelector("#c"); //grab canvas with the id of "#c"
+	var ctx = c.getContext("2d"); // get the context, pass in paramegter of 2d
+</script>
+
+
+(0,0) is the top left-hand corner
+
+as you move down Y axis the numbers go up // opposite of geometry
+as you move right X axis the numbers go up
+
+var image = new Image();
+
+image.scr = "local_file_name" (you can use websites too)
+
+image.onload = function() {
+	console.log("Loaded image");
+	ctx.drawImage(image, 0, 0, c.width, c.height); // grab image context from above, pass it to drawImage method with the following parameters: (image itself, starting x coord, starting y coord, width, height)
+
+	var savedImage = c.toDataURL(); // used image context, passed it to toDataURL() method which creates a string representing the image
+
+	window.open(savedImage);
+}
+
+images are loaded asynchronously (not at the same time)  - do work after it's loaded
+
+ctx.fillRect()// takes 4 parameters: x coord, y coord, width, height -- this creates rectangles that are filled in
+ctx.fillRect(10,10,20,30)
+ctx.strokeRect() // same 4 parameters apply here as well -- this creates rectangles that are just outlined
+
+ctx.fillStyle = "blue" // makes the rectangle blue
+
+to erase entire canves you call clearRect() with the dimensions you want to erase
+
+ctx.clearRect(0,0, c.width, c.height) // c being the canvas
+
+ctx.beginDraw() method allows you to draw shapes - it has to be invoked before you use the following methods:
+
+	ctx.moveTo(x coord, y coord) method just puts the pen down
+	ctx.lineTo(x coord, y coord) method moves the pen from the moveTo() coord to the lineTo() coordinates and creates a line between them
+
+
+
+
